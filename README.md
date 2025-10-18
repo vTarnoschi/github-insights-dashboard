@@ -2,7 +2,6 @@
 
 Aplicação construída usando **Next.js** com **Shadcn** que consome a api pública do **GitHub** para exibir estatísticas sobre o usuário pesquisado e seus repositórios públicos.
 
----
 
 ## Decisões técnicas
 
@@ -15,20 +14,17 @@ Escolhi o **react-query** gerenciar o estado de dados assíncronos de forma decl
 - Prefetch de dados melhorando a experiêcia de navegação;
 - Integração fluida com SSR/Next.js e suporte a **hydration** de cache no servidor.
 
----
 
 ## Tema e persistência
 
 O app oferece modo claro e escuro, utilizando o componente **ThemeToggle**.
 A preferência do usuário é salva no localStorage, garantindo que o tema seja persistente entre sessões.
 
----
 
 ## Atualização em tempo real (mock)
 
 Para simular novos via WebSocket, foi criado o hook **useWebsockMockRepos**, que utiliza setInterval para adicionar dados mockados a cada 30 segundos.
 
----
 
 ## Instalação e execução
 
