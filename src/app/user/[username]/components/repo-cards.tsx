@@ -1,5 +1,6 @@
 "user client";
 
+import { memo } from "react";
 import { StarIcon } from "lucide-react";
 
 import { Repository } from "@/types";
@@ -12,7 +13,7 @@ import {
   CardDescription,
 } from "@/components/ui/card";
 
-export default function RepoCards({
+function RepoCards({
   id,
   name,
   language,
@@ -38,3 +39,5 @@ export default function RepoCards({
     </Card>
   );
 }
+
+export default memo(RepoCards);

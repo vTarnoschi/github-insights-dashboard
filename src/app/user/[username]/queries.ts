@@ -1,19 +1,21 @@
-import { useQuery, queryOptions, QueryClient } from "@tanstack/react-query";
-import { getUser, getUserRepositories } from "@/services/github-services";
+import {
+  useSuspenseQuery,
+  queryOptions,
+  QueryClient,
+} from "@tanstack/react-query";
 
-export const userQueryKey = (username: string) => ["user", username];
-export const reposQueryKey = (username: string) => ["repos", username];
+import { getUser, getUserRepositories } from "@/services/github-services";
 
 function userOptions(username: string) {
   return queryOptions({
-    queryKey: userQueryKey(username),
+    queryKey: ["user", username],
     queryFn: () => getUser(username),
   });
 }
 
 function reposOptions(username: string) {
   return queryOptions({
-    queryKey: reposQueryKey(username),
+    queryKey: ["repos", username],
     queryFn: () => getUserRepositories(username),
   });
 }
@@ -33,10 +35,10 @@ export async function prefetchRepositories(
 
 export function useUser(username: string) {
   const options = userOptions(username);
-  return useQuery({ ...options, enabled: !!username });
+  return useSuspenseQuery(options);
 }
 
 export function useRepositories(username: string) {
   const options = reposOptions(username);
-  return useQuery({ ...options, enabled: !!username });
+  return useSuspenseQuery(options);
 }
