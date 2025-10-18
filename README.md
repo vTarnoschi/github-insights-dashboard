@@ -53,3 +53,35 @@ Para simular novos via WebSocket, foi criado o hook **useWebsockMockRepos**, que
    ```bash
     npm run test
    ```
+
+## Decisão de Arquitetura
+
+O projeto segue uma arquitetura modular e escalável, organizada para facilitar manutenção, testes e performance:
+
+- **Separação por responsabilidades**  
+  - `app/`: páginas Next.js (App Router) e layout principal;
+  - `components/`: UI reutilizável;
+  - `hooks/`: lógica de estado e efeitos colaterais;
+  - `lib/`: configurações e funções utilitárias;
+  - `providers/`: contextos globais;
+  - `services/`: chamadas à API do GitHub, mantendo desacoplamento  
+  - `types/`: tipagem TypeScript consistente  
+  - `__tests__/`: testes unitários e de integração
+
+- **App Router do Next.js**  
+  Cada rota dinâmicapossui sua própria pasta com `page.tsx` e `queries.ts`, permitindo SSR/SSG específicos por página.
+
+- **Abstração da API**  
+  Services e Axios centralizados isolando chamadas externas.
+
+- **Hooks customizados**  
+  lógica de estado e efeitos encapsulados, mantendo componentes puros e focados em UI.
+
+- **Providers globais**  
+  Gerencimaneto de estado compartilhado, hydration de cache e contexto de forma organizada.
+
+- **UI modular**  
+  Componentes estilizados com ShadCN/UI + Tailwind.
+
+- **Testes organizados**  
+  Cada página ou componente relevante possui testes correspondentes.

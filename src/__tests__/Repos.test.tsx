@@ -1,5 +1,6 @@
 import { renderHook, act } from "@testing-library/react";
 
+import { Repository } from "@/types";
 import { useWebsockMockRepos } from "@/hooks/use-websocket-mock";
 
 jest.useFakeTimers();
@@ -11,7 +12,7 @@ describe("useWebsockMockRepos", () => {
     ];
 
     const { result } = renderHook(() =>
-      useWebsockMockRepos(initialRepos as any)
+      useWebsockMockRepos(initialRepos as Repository[])
     );
 
     expect(result.current.length).toBe(1);
